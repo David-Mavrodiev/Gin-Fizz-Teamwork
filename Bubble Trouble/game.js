@@ -231,16 +231,20 @@ function draw() {
 
 
 
-     context.fillStyle = "rgb(0, 0, 0)";
-       context.font="40px Verdana";
-       context.fillText("LEVEL:"+level, 100, 50);
         context.fillStyle = "rgb(0, 0, 0)";
-       context.font="40px Verdana";
-       context.fillText("LIVES:"+lives, 400, 50);
-    context.arc(myX,myY,5,0,2*Math.PI);
-    context.fillStyle="red";
-    context.fill();
-    context.drawImage(robot,pX,pY,30,60);
+        context.font="40px Verdana";
+        context.fillText("LEVEL:"+level, 20, 40); //context.fillText("LEVEL:"+level, 100, 50); //shows top left //yasen 01.08
+        context.fillStyle = "rgb(0, 0, 0)";
+        context.font="40px Verdana";
+        context.fillText("LIVES:"+lives, 630, 40); //context.fillText("LIVES:"+lives, 400, 50); //shows top right //yasen 01.08
+        
+        context.beginPath();  //new line
+        context.arc(myX,myY,5,0,2*Math.PI);
+        context.fillStyle="#2E2E1F";  //context.fillStyle="red";  //change color of balls //yasen 01.08
+        context.fill();
+        context.lineWidth = 7;   //new line  //yasen 01.08
+        context.strokeStyle = "green";  //green border for bigger shooting ball //yasen 01.08
+        context.drawImage(robot,pX,pY,30,60);
     }
     if(nachalo){
         context.fillStyle = "rgb(0, 0, 0)";

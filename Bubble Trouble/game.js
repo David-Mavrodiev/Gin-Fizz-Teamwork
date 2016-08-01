@@ -233,7 +233,7 @@ function draw() {
 
         context.fillStyle = "rgb(0, 0, 0)";
         context.font="40px Verdana";
-        context.fillText("LEVEL:"+level, 20, 40); //context.fillText("LEVEL:"+level, 100, 50); //shows top left //yasen 01.08
+        context.fillText("LEVEL:"+level, 20, 40); // context.fillText("LEVEL:"+level, 100, 50); //shows top left //yasen 01.08
         context.fillStyle = "rgb(0, 0, 0)";
         context.font="40px Verdana";
         context.fillText("LIVES:"+lives, 630, 40); //context.fillText("LIVES:"+lives, 400, 50); //shows top right //yasen 01.08

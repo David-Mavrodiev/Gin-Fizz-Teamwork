@@ -1,0 +1,28 @@
+body{
+		background-color:#c0c0a5;
+		margin: 0;
+}
+
+#title {
+		margin: 0 auto;
+		width:800px;
+		text-align:center;
+		margin-top:15px;
+}
+
+a {
+		text-decoration:none;
+		color:#000000;
+		
+}
+
+#frame-div {
+		background-image: url("background.png");
+		background-repeat: repeat;
+		margin: 0 auto; 
+		width:800px;
+		height:600px; 
+		border: 15px solid #2e2e1f; 
+		border-radius: 5px;
+}
+

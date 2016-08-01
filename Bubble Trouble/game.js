@@ -244,6 +244,9 @@ function draw() {
         context.fill();
         context.lineWidth = 7;   //new line  //yasen 01.08
         context.strokeStyle = "green";  //green border for bigger shooting ball //yasen 01.08
+        context.stroke();  //new line //yasen 01.08
+        
+        context.fill();
         context.drawImage(robot,pX,pY,30,60);
     }
     if(nachalo){

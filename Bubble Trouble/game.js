@@ -9,7 +9,7 @@ canvas.width = 800;
 canvas.height = 600;
 var context = canvas.getContext("2d");
 
-var myX=200+14, myY=535,mishkaX=0,myX2=400,myY2=400,mishkaY=0,d=0,strelba=false,pX=200,pY=535,lives=3;  //Suzdadohme promenliva! Tipa i e kakufto
+var myX=200+14, myY=535,mishkaX=0,myX2=400,myY2=400,mishkaY=0,d=0,strelba=false,pX=200,pY=535,lives=3;
 var nachalo=true,restart=false,level=1,win=false,lose=false;
 var robot=new Image;
 robot.src="robot.png";

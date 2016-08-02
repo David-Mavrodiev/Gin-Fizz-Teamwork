@@ -195,9 +195,42 @@ function update() {
     setTimeout(update, 10);
 }
 
+//--------------------------------------------Start of draw function----------------------------------------------
 function draw() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.globalAlpha = 1;
+                            //-------------------------First if--------------------------When we open the game
+    if(nachalo){
+       context.fillStyle = "rgb(0, 0, 0)"; 
+       context.font="30px Verdana";
+       context.fillText("Click to continue", 250, 500);
+       context.fillStyle = "rgb(255, 0, 0)";
+       context.font="100px Verdana";
+       context.fillText("BUBBLE", 230, 100);
+       context.fillStyle = "rgb(0, 19, 248)";
+       context.font="100px Verdana";
+       context.fillText("TROUBLE", 200, 200);
+    }
+                            //-------------------------Second if-------------------------Restart, Win or Loose
+    if(restart){
+       if(level<=5){
+         context.fillStyle = "rgb(0, 0, 0)";
+         context.font="30px Verdana";
+         context.fillText("Click to continue", 250, 500);
+       }
+       if(win ){
+         context.fillStyle = "rgb(255, 0, 0)";
+         context.font="100px Verdana";
+         context.fillText("YOU WIN", 230, 100);
+       }
+       if(lose){
+          context.fillStyle = "rgb(255, 0, 0)";
+         context.font="100px Verdana";
+         context.fillText("YOU LOSE", 170, 100);
+       }
+    }
+
+                            //-------------------------Third if--------------------------When playing the game
     if(!nachalo && !restart){
 
     for(i=0;i<br;i++){
@@ -249,35 +282,11 @@ function draw() {
         context.fill();
         context.drawImage(robot,pX,pY,30,60);
     }
-    if(nachalo){
-        context.fillStyle = "rgb(0, 0, 0)";
-       context.font="30px Verdana";
-       context.fillText("Click to continue", 250, 500);
-       context.fillStyle = "rgb(255, 0, 0)";
-       context.font="100px Verdana";
-       context.fillText("BUBBLE", 230, 100);
-       context.fillStyle = "rgb(0, 19, 248)";
-       context.font="100px Verdana";
-       context.fillText("TROUBLE", 200, 200);
-    }
-    if(restart){
-       if(level<=5){
-         context.fillStyle = "rgb(0, 0, 0)";
-         context.font="30px Verdana";
-         context.fillText("Click to continue", 250, 500);
-       }
-       if(win ){
-         context.fillStyle = "rgb(255, 0, 0)";
-         context.font="100px Verdana";
-         context.fillText("YOU WIN", 230, 100);
-       }
-       if(lose){
-          context.fillStyle = "rgb(255, 0, 0)";
-         context.font="100px Verdana";
-         context.fillText("YOU LOSE", 170, 100);
-       }
-    }
+
     requestAnimationFrame(draw);
 }
+//--------------------------------------------End draw function----------------------------------------------
+
+
 update();
 draw();

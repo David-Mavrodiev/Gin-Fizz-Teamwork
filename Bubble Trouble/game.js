@@ -260,10 +260,11 @@ function draw() {
 
        context.beginPath();
         if(topkiR[i]>=5){
-         context.arc(topkiX[i],topkiY[i],topkiR[i],0,2*Math.PI);
-         context.lineWidth = 3;   //new line  //yasen 01.08
-        context.strokeStyle = "#ffffff";  //green border for bigger shooting ball //yasen 01.08
-        context.stroke();  //new line //yasen 01.08
+        context.arc(topkiX[i],topkiY[i],topkiR[i],0,2*Math.PI);
+        //balls to shoot at border + color
+        context.lineWidth = 3;   
+        context.strokeStyle = "#C1D72E";  
+        context.stroke();  
         }
         if(pX+30>topkiX[i] && pX<topkiX[i]+topkiR[i] && pY+60>topkiY[i] && pY<topkiY[i]+topkiR[i] && topkiR[i]>=5){
           restart=true;
@@ -275,10 +276,10 @@ function draw() {
 
 
 
-        context.fillStyle = "rgb(0, 0, 0)";
+        context.fillStyle = "#C1D72E";
         context.font="40px Verdana";
         context.fillText("LEVEL:"+level, 20, 40); // context.fillText("LEVEL:"+level, 100, 50); //shows top left //yasen 01.08
-        context.fillStyle = "rgb(0, 0, 0)";
+        context.fillStyle = "#C1D72E";
         context.font="40px Verdana";
         context.fillText("LIVES:"+lives, 630, 40); //context.fillText("LIVES:"+lives, 400, 50); //shows top right //yasen 01.08
         

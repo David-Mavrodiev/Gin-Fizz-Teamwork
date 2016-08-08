@@ -9,10 +9,11 @@ canvas.width = 800;
 canvas.height = 600;
 var context = canvas.getContext("2d");
 
-var myX=200+14, myY=535,mishkaX=0,myX2=400,myY2=400,mishkaY=0,d=0,strelba=false,pX=200,pY=535,lives=3;
+var myX=200+14, myY=550,mishkaX=0,myX2=400,myY2=400,mishkaY=0,d=0,strelba=false,pX=200,pY=550,lives=3; 
+
 var nachalo=true,restart=false,level=1,win=false,lose=false;
-var robot=new Image;
-robot.src="robot.png";
+var ninja=new Image(); 
+ninja.src="ninja-left.png";
 var otmestvaneX=2,otmestvaneY=2,br=0;
 var topkiX=[],topkiY=[],i,otmestvaneX=[],otmestvaneY=[],topkiR=[];
 topkiX[0]=200;
@@ -37,11 +38,11 @@ window.addEventListener("mouseup", function (args) {
          lives=lives-1;
        }
        myX=200+14;
-       myY=535;
+       myY=550;
        d=0;
        strelba=false;
        pX=200;
-       pY=535;
+       pY=550;
        restart=false;
        win=false;
        lose=false;
@@ -168,7 +169,7 @@ function update() {
     }
     if(myY-5<=0){
       strelba=false;
-      myY=535;
+      myY=550;
       myX=pX+14;
     }
      for(i=0;i<br;i++){
@@ -245,7 +246,7 @@ function draw() {
         topkiR[br]=topkiR[i]/2;
         topkiR[i]=topkiR[i]/2;
         br++;
-        myY=535;
+        myY=550;
         strelba=false;
       }
 
@@ -276,11 +277,11 @@ function draw() {
         context.fillStyle="#2E2E1F";  //context.fillStyle="red";  //change color of balls //yasen 01.08
         context.fill();
         context.lineWidth = 7;   //new line  //yasen 01.08
-        context.strokeStyle = "green";  //green border for bigger shooting ball //yasen 01.08
+        context.strokeStyle = "#C1D72E";  //green border for bigger shooting ball //yasen 01.08
         context.stroke();  //new line //yasen 01.08
         
         context.fill();
-        context.drawImage(robot,pX,pY,30,60);
+        context.drawImage(ninja,pX,pY,60,50); 
     }
 
     requestAnimationFrame(draw);

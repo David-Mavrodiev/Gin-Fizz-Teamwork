@@ -288,13 +288,13 @@ function draw() {
         context.font="100px Shojumaru-Regular";
        context.fillText("TROUBLE", 200, 250);
 =======
-       context.font = "30px Verdana";
+    context.font = "30px Shojumaru-Regular";
        context.fillText("Click to continue", 250, 500);
        context.fillStyle = "rgb(255, 0, 0)";
-       context.font = "100px Verdana";
+        context.font = "100px Shojumaru-Regular";
        context.fillText("BUBBLE", 230, 100);
        context.fillStyle = "rgb(0, 19, 248)";
-       context.font = "100px Verdana";
+        context.font = "100px Shojumaru-Regular";
        context.fillText("TROUBLE", 200, 200);
 >>>>>>> origin/master
     }

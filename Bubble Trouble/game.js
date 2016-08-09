@@ -5,131 +5,170 @@ var requestAnimationFrame = window.requestAnimationFrame ||
                 function (callback) { setTimeout (callback, 1000 / 30); };
 
 var canvas = document.getElementById("canvas-id");
-canvas.width = 800;
-canvas.height = 600;
+    canvas.width = 800;
+    canvas.height = 600;
 var context = canvas.getContext("2d");
 
-var myX=200+14, myY=550,mishkaX=0,myX2=400,myY2=400,mishkaY=0,d=0,strelba=false,pX=200,pY=550,lives=3; 
+var myX = 200+14, 
+    myY = 550,
+    mishkaX = 0,
+    myX2 = 400,
+    myY2 = 400,
+    mishkaY = 0,
+    d = 0,
+    shooting = false, //becames true when startGame or restartGame
+    pX = 200,
+    pY = 550,
+    lives = 3; //number of starting lves
 
-var nachalo=true,restart=false,level=1,win=false,lose=false;
-var ninja=new Image(); 
-ninja.src="ninja-left.png";
+var startGame = true,
+    restartGame = false,
+    level = 1, // Level of the game 1 to 5
+    win = false,
+    lose = false;
+
+var ninja = new Image();
+    ninja.src ="ninja-left.png";
 
 var background = new Image(); 
-background.src="game-background.jpg";
+    background.src = "game-background.jpg";
 
-var otmestvaneX=2,otmestvaneY=2,br=0;
-var topkiX=[],topkiY=[],i,otmestvaneX=[],otmestvaneY=[],topkiR=[];
-topkiX[0]=200;
-topkiY[0]=200;
-otmestvaneX[0]=2;
-otmestvaneY[0]=2;
-topkiR[0]=40;
-br++;
+var otmestvaneX = 2,
+    otmestvaneY = 2,
+    successfulShotsCount = 0; //number of times we hit a ball
+
+var topkiX= [],
+    topkiY= [],
+    i,
+    otmestvaneX= [],
+    otmestvaneY= [],
+    BallsRadius = []; //Radius of the balls
+    topkiX[0] = 200;
+    topkiY[0] = 200;
+    otmestvaneX[0] = 2;
+    otmestvaneY[0] = 2;
+    BallsRadius[0] = 40;
+    successfulShotsCount += 1;
+
+//--------------------------------------------Start of keydown event----------------------------------------------
 window.addEventListener("keydown", function (args) {
 
     console.log(args.which);
-}, false);
+}, true);
+//--------------------------------------------End of keydown event----------------------------------------------
+
+//--------------------------------------------Start of mouseup event----------------------------------------------
 window.addEventListener("mouseup", function (args) {
-     if(!nachalo && !restart){
-      strelba=true;
+     if(!startGame && !restartGame){
+      shooting =true;
      }
-     if(nachalo){
-       nachalo=false;
+     if(startGame){
+       startGame=false;
      }
-     if(restart && level<=5){
+     if(restartGame && level<=5){
        if(lose){
-         lives=lives-1;
+         lives = lives - 1; 
        }
        myX=200+14;
        myY=550;
        d=0;
-       strelba=false;
+       shooting=false;
        pX=200;
        pY=550;
-       restart=false;
-       win=false;
+       restartGame=false;
+       win = false;
        lose=false;
-       for(i=0;i<br;i++){
+       for(i=0;i<successfulShotsCount;i+= 1){
          topkiX[i]=0;
          topkiY[i]=0;
          otmestvaneX[i]=0;
          otmestvaneY[i]=0;
-         topkiR[i]=0;
+         BallsRadius[i]=0;
        }
-       br=0;
-if(level==1){
-topkiX[0]=200;
-topkiY[0]=200;
-otmestvaneX[0]=2;
-otmestvaneY[0]=2;
-topkiR[0]=40;
-br++;
-     }
+       successfulShotsCount=0;
+        if(level==1){
+        topkiX[0]=200;
+        topkiY[0]=200;
+        otmestvaneX[0]=2;
+        otmestvaneY[0]=2;
+        BallsRadius[0]=40;
+        successfulShotsCount += 1;
+            }
+
      if(level==2){
        topkiX[0]=200;
        topkiY[0]=200;
        otmestvaneX[0]=2;
        otmestvaneY[0]=2;
-       topkiR[0]=80;
-       br++;
+       BallsRadius[0]=80;
+       successfulShotsCount += 1;
      }
+
      if(level==3){
        topkiX[0]=200;
        topkiY[0]=200;
        otmestvaneX[0]=2;
        otmestvaneY[0]=2;
-       topkiR[0]=40;
-       br++;
+       BallsRadius[0]=40;
+       successfulShotsCount += 1;
        topkiX[1]=200;
        topkiY[1]=200;
        otmestvaneX[1]=-2;
        otmestvaneY[1]=2;
-       topkiR[1]=40;
-       br++;
+       BallsRadius[1]=40;
+       successfulShotsCount += 1;
      }
+
      if(level==4){
        topkiX[0]=200;
        topkiY[0]=200;
        otmestvaneX[0]=2;
        otmestvaneY[0]=2;
-       topkiR[0]=80;
-       br++;
+       BallsRadius[0]=80;
+       successfulShotsCount += 1;
        topkiX[1]=200;
        topkiY[1]=200;
        otmestvaneX[1]=-2;
        otmestvaneY[1]=2;
-       topkiR[1]=80;
-       br++;
+       BallsRadius[1]=80;
+       successfulShotsCount += 1;
      }
+
      if(level==5){
        topkiX[0]=200;
        topkiY[0]=200;
        otmestvaneX[0]=2;
        otmestvaneY[0]=2;
-       topkiR[0]=40;
-       br++;
+       BallsRadius[0]=40;
+       successfulShotsCount += 1;
        topkiX[1]=200;
        topkiY[1]=200;
        otmestvaneX[1]=-2;
        otmestvaneY[1]=2;
-       topkiR[1]=40;
-       br++;
+       BallsRadius[1]=40;
+       successfulShotsCount += 1;
        topkiX[2]=200;
        topkiY[2]=200;
        otmestvaneX[2]=2;
        otmestvaneY[2]=2;
-       topkiR[2]=40;
-       br++;
+       BallsRadius[2]=40;
+       successfulShotsCount += 1;
      }
      }
 }, false);
+//--------------------------------------------End of mouseup event----------------------------------------------
+
+//--------------------------------------------Start of mousemove event----------------------------------------------
 window.addEventListener("mousemove", function (args) {
     mishkaX=args.clientX-canvas.offsetLeft;
     mishkaY=args.clientY-canvas.offsetTop;
 
 
 }, false);
+
+//--------------------------------------------End of mousemove event----------------------------------------------
+
+//--------------------------------------------Start of collision function----------------------------------------------
 function collision (p1x,p1y,r1,p2x,p2y,r2){
 d=Math.sqrt((p1x-p2x)*(p1x-p2x)+(p1y-p2y)*(p1y-p2y));
 var radi=r1+r2;
@@ -140,43 +179,46 @@ var radi=r1+r2;
    }
 
 }
+//--------------------------------------------End of collision function----------------------------------------------
+
+//--------------------------------------------Start of update function----------------------------------------------
 function update() {
-    if(!nachalo && !restart){
+    if(!startGame && !restartGame){
      if(lives==0){
        level=1;
-       restart=true;
+       restartGame=true;
        lives=3;
      }
-     console.log(topkiX[0],topkiY[0],topkiR[0],br);
-    restart=true;
-    for(i=0;i<br;i++){
-      if(topkiR[i]>=5){
-        restart=false;
+     console.log(topkiX[0],topkiY[0],BallsRadius[0],successfulShotsCount);
+    restartGame=true;
+    for(i=0;i<successfulShotsCount;i += 1){
+      if(BallsRadius[i]>=5){
+        restartGame=false;
       }
     }
-    if(restart){
-      win=true;
+    if(restartGame){
+      win = true;
       level=level+1;
     }
     pX=mishkaX;
     if(pX<1){
         pX=1;
     }
-    if(pX>770){
-        pX=770;
+    if(pX>750){
+        pX=750;
     }
-    if(!strelba){
+    if(!shooting){
         myX=pX+14;
       }
-    if(strelba){
+    if(shooting){
       myY=myY-5;
     }
     if(myY-5<=0){
-      strelba=false;
+      shooting=false;
       myY=550;
       myX=pX+14;
     }
-     for(i=0;i<br;i++){
+     for(i=0;i<successfulShotsCount;i += 1){
 
         topkiX[i]=topkiX[i]+otmestvaneX[i];
         topkiY[i]=topkiY[i]+otmestvaneY[i];
@@ -184,13 +226,13 @@ function update() {
 
 
 
-    if(topkiX[i]+topkiR[i]>800){
+    if(topkiX[i]+BallsRadius[i]>800){
       otmestvaneX[i]=-2;
     }
-     if(topkiX[i]-topkiR[i]<=0){
+     if(topkiX[i]-BallsRadius[i]<=0){
        otmestvaneX[i]=2;
     }
-    if(topkiY[i]+topkiR[i]>600){
+    if(topkiY[i]+BallsRadius[i]>600){
       otmestvaneY[i]=-5;
     }else{
            otmestvaneY[i]=otmestvaneY[i]+0.04;
@@ -199,13 +241,14 @@ function update() {
     }
     setTimeout(update, 10);
 }
+//--------------------------------------------End of update function----------------------------------------------
 
 //--------------------------------------------Start of draw function----------------------------------------------
 function draw() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.globalAlpha = 1;
                             //-------------------------First if--------------------------When we open the game
-    if(nachalo){
+    if(startGame){
        context.fillStyle = "rgb(0, 0, 0)"; 
        context.font="30px Verdana";
        context.fillText("Click to continue", 250, 500);
@@ -217,13 +260,13 @@ function draw() {
        context.fillText("TROUBLE", 200, 200);
     }
                             //-------------------------Second if-------------------------Restart, Win or Loose
-    if(restart){
+    if(restartGame){
        if(level<=5){
          context.fillStyle = "rgb(0, 0, 0)";
          context.font="30px Verdana";
          context.fillText("Click to continue", 250, 500);
        }
-       if(win ){
+       if(win){
          context.fillStyle = "rgb(255, 0, 0)";
          context.font="100px Verdana";
          context.fillText("YOU WIN", 230, 100);
@@ -236,38 +279,38 @@ function draw() {
     }
 
                             //-------------------------Third if--------------------------When playing the game
-    if(!nachalo && !restart){
+    if(!startGame && !restartGame){
 
         context.fill();
         context.drawImage(background,0,0,800,600);
 
-    for(i=0;i<br;i++){
+    for(i=0;i<successfulShotsCount;i += 1){
 
-      if(collision(myX,myY,5,topkiX[i],topkiY[i],topkiR[i]) && strelba && topkiR[i]>=5){
+      if(collision(myX,myY,5,topkiX[i],topkiY[i],BallsRadius[i]) && shooting && BallsRadius[i]>=5){
 
-        topkiX[br]=topkiX[i];
-        topkiY[br]=topkiY[i];
-        otmestvaneX[br]=-otmestvaneX[i];
-        otmestvaneY[br]=-3;
+        topkiX[successfulShotsCount]=topkiX[i];
+        topkiY[successfulShotsCount]=topkiY[i];
+        otmestvaneX[successfulShotsCount]=-otmestvaneX[i];
+        otmestvaneY[successfulShotsCount]=-3;
         otmestvaneY[i]=-3;
-        topkiR[br]=topkiR[i]/2;
-        topkiR[i]=topkiR[i]/2;
-        br++;
+        BallsRadius[successfulShotsCount]=BallsRadius[i]/2;
+        BallsRadius[i]=BallsRadius[i]/2;
+        successfulShotsCount += 1;
         myY=550;
-        strelba=false;
+        shooting=false;
       }
 
 
        context.beginPath();
-        if(topkiR[i]>=5){
-        context.arc(topkiX[i],topkiY[i],topkiR[i],0,2*Math.PI);
+        if(BallsRadius[i]>=5){
+        context.arc(topkiX[i],topkiY[i],BallsRadius[i],0,2*Math.PI);
         //balls to shoot at border + color
         context.lineWidth = 3;   
         context.strokeStyle = "#C1D72E";  
         context.stroke();  
         }
-        if(pX+30>topkiX[i] && pX<topkiX[i]+topkiR[i] && pY+60>topkiY[i] && pY<topkiY[i]+topkiR[i] && topkiR[i]>=5){
-          restart=true;
+        if(pX+30>topkiX[i] && pX<topkiX[i]+BallsRadius[i] && pY+60>topkiY[i] && pY<topkiY[i]+BallsRadius[i] && BallsRadius[i]>=5){
+          restartGame=true;
           lose=true;
         }
           context.fill();

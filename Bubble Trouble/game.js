@@ -9,12 +9,12 @@ var canvas = document.getElementById("canvas-id");
     canvas.height = 600;
 var context = canvas.getContext("2d");
 
-var myX = 200+14, 
+var myX = 200 + 14, 
     myY = 550,
-    mishkaX = 0,
+    mouseMovementX = 0,
     myX2 = 400,
     myY2 = 400,
-    mishkaY = 0,
+    mouseMovementY = 0,
     d = 0,
     shooting = false, //becames true when startGame or restartGame
     pX = 200,
@@ -28,7 +28,7 @@ var startGame = true,
     loose = false;
 
 var ninja = new Image();
-    ninja.src ="ninja-left.png";
+    ninja.src = "ninja-left.png";
 
 var background = new Image(); 
     background.src = "game-background.jpg";
@@ -58,7 +58,7 @@ window.addEventListener("keydown", function (args) {
 //--------------------------------------------End of keydown event----------------------------------------------
 
 //--------------------------------------------Start of mouseup event----------------------------------------------
-window.addEventListener("mouseup", function (args) {
+canvas.addEventListener("mouseup", function (args) {
      if(!startGame && !restartGame){
       shooting = true;
      }
@@ -69,7 +69,7 @@ window.addEventListener("mouseup", function (args) {
        if(loose){
          lives = lives - 1; 
        }
-       myX = 200+14;
+       myX = 200 + 14;
        myY = 550;
        d = 0;
        shooting = false;
@@ -95,7 +95,7 @@ window.addEventListener("mouseup", function (args) {
         successfulShotsCount += 1;
             }
 
-     if(level ==2 ){
+     if(level == 2 ){
        ballsX[0] = 200;
        ballsY[0] = 200;
        otmestvaneX[0] = 2;
@@ -159,9 +159,9 @@ window.addEventListener("mouseup", function (args) {
 //--------------------------------------------End of mouseup event----------------------------------------------
 
 //--------------------------------------------Start of mousemove event----------------------------------------------
-window.addEventListener("mousemove", function (args) {
-    mishkaX = args.clientX-canvas.offsetLeft;
-    mishkaY = args.clientY-canvas.offsetTop;
+canvas.addEventListener("mousemove", function (args) {
+    mouseMovementX = args.clientX-canvas.offsetLeft;
+    mouseMovementY = args.clientY-canvas.offsetTop;
 
 
 }, false);
@@ -170,7 +170,7 @@ window.addEventListener("mousemove", function (args) {
 
 //--------------------------------------------Start of collision function----------------------------------------------
 function collision (p1x,p1y,r1,p2x,p2y,r2){
-d=Math.sqrt((p1x - p2x)*(p1x - p2x)+(p1y - p2y)*(p1y - p2y));
+d = Math.sqrt((p1x - p2x) * (p1x - p2x) + (p1y - p2y) * (p1y - p2y));
 var radi = r1 + r2;
    if(radi > d){
        return true;
@@ -197,9 +197,9 @@ function update() {
     }
     if(restartGame){
       win = true;
-      level = level+1;
+      level = level + 1;
     }
-    pX = mishkaX;
+    pX = mouseMovementX;
     if(pX < 1){
         pX = 1;
     }
@@ -210,9 +210,9 @@ function update() {
         myX = pX + 14;
       }
     if(shooting){
-      myY = myY-  5;
+      myY = myY - 5;
     }
-    if(myY-5 <= 0){
+    if(myY - 5 <= 0){
       shooting = false;
       myY = 550;
       myX = pX + 14;
@@ -234,7 +234,7 @@ function update() {
     if(ballsY[i] + ballsRadius[i] > 600){
       otmestvaneY[i] = -5;
     }else{
-           otmestvaneY[i] = otmestvaneY[i] + 0.04;
+      otmestvaneY[i] = otmestvaneY[i] + 0.04;
     }
      }
     }

@@ -33,6 +33,7 @@ var ninja = new Image();
 var background = new Image(); 
     background.src = "game-background.jpg";
 
+
 var otmestvaneX = 2,
     otmestvaneY = 2,
     successfulShotsCount = 0; //number of times we hit a ball
@@ -169,11 +170,21 @@ canvas.addEventListener("mousemove", function (args) {
 //--------------------------------------------End of mousemove event----------------------------------------------
 
 //--------------------------------------------Start of collision function----------------------------------------------
+    
+ 
+
+   
+
 function collision (p1x,p1y,r1,p2x,p2y,r2){
 d = Math.sqrt((p1x - p2x) * (p1x - p2x) + (p1y - p2y) * (p1y - p2y));
 var radi = r1 + r2;
+var crash = new Audio('fireCracker.wav');
+
    if(radi > d){
+       crash.play();
        return true;
+       
+
    }else{
        return false;
    }

@@ -13,10 +13,10 @@ var myX=200+14, myY=550,mishkaX=0,myX2=400,myY2=400,mishkaY=0,d=0,strelba=false,
 
 var nachalo=true,restart=false,level=1,win=false,lose=false;
 var ninja=new Image(); 
-ninja.src="ninja-left.png";
+ninja.src="./img/ninja-left.png";
 
 var background = new Image(); 
-background.src="game-background.jpg";
+background.src="./img/game-background.jpg";
 
 var otmestvaneX=2,otmestvaneY=2,br=0;
 var topkiX=[],topkiY=[],i,otmestvaneX=[],otmestvaneY=[],topkiR=[];
@@ -207,31 +207,31 @@ function draw() {
                             //-------------------------First if--------------------------When we open the game
     if(nachalo){
        context.fillStyle = "rgb(0, 0, 0)"; 
-       context.font="30px Verdana";
+        context.font="30px Shojumaru-Regular";
        context.fillText("Click to continue", 250, 500);
-       context.fillStyle = "rgb(255, 0, 0)";
-       context.font="100px Verdana";
-       context.fillText("BUBBLE", 230, 100);
-       context.fillStyle = "rgb(0, 19, 248)";
-       context.font="100px Verdana";
-       context.fillText("TROUBLE", 200, 200);
+       context.fillStyle = "rgb(213, 91, 11)";
+        context.font="100px Shojumaru-Regular";
+       context.fillText("BUBBLE", 230, 150);
+       context.fillStyle = "rgb(193, 215, 46)";
+        context.font="100px Shojumaru-Regular";
+       context.fillText("TROUBLE", 200, 250);
     }
                             //-------------------------Second if-------------------------Restart, Win or Loose
     if(restart){
        if(level<=5){
          context.fillStyle = "rgb(0, 0, 0)";
-         context.font="30px Verdana";
+           context.font="30px Shojumaru-Regular";
          context.fillText("Click to continue", 250, 500);
        }
        if(win ){
          context.fillStyle = "rgb(255, 0, 0)";
-         context.font="100px Verdana";
+           context.font="100px Shojumaru-Regular";
          context.fillText("YOU WIN", 230, 100);
        }
        if(lose){
           context.fillStyle = "rgb(255, 0, 0)";
-         context.font="100px Verdana";
-         context.fillText("YOU LOSE", 170, 100);
+           context.font="100px Shojumaru-Regular";
+         context.fillText("YOU LOSE", 170, 150);
        }
     }
 

@@ -37,14 +37,14 @@ var otmestvaneX = 2,
     otmestvaneY = 2,
     successfulShotsCount = 0; //number of times we hit a ball
 
-var topkiX = [],
-    topkiY = [],
+var ballsX = [],
+    ballsY = [],
     i,
     otmestvaneX = [],
     otmestvaneY = [],
     ballsRadius = []; //Radius of the balls
-    topkiX[0] = 200;
-    topkiY[0] = 200;
+    ballsX[0] = 200;  //starting position of first ball X
+    ballsY[0] = 200;  //starting position of first ball Y
     otmestvaneX[0] = 2;
     otmestvaneY[0] = 2;
     ballsRadius[0] = 40;
@@ -78,17 +78,17 @@ window.addEventListener("mouseup", function (args) {
        restartGame = false;
        win = false;
        loose = false;
-       for(i = 0;i < successfulShotsCount; i += 1){
-         topkiX[i] = 0;
-         topkiY[i] = 0;
+       for(i = 0; i < successfulShotsCount; i += 1){
+         ballsX[i] = 0;
+         ballsY[i] = 0;
          otmestvaneX[i] = 0;
          otmestvaneY[i] = 0;
          ballsRadius[i] = 0;
        }
        successfulShotsCount=0;
         if(level == 1){
-        topkiX[0] = 200;
-        topkiY[0] = 200;
+        ballsX[0] = 200;
+        ballsY[0] = 200;
         otmestvaneX[0] = 2;
         otmestvaneY[0] = 2;
         ballsRadius[0] = 40;
@@ -96,8 +96,8 @@ window.addEventListener("mouseup", function (args) {
             }
 
      if(level ==2 ){
-       topkiX[0] = 200;
-       topkiY[0] = 200;
+       ballsX[0] = 200;
+       ballsY[0] = 200;
        otmestvaneX[0] = 2;
        otmestvaneY[0] = 2;
        ballsRadius[0] = 80;
@@ -105,14 +105,14 @@ window.addEventListener("mouseup", function (args) {
      }
 
      if(level == 3){
-       topkiX[0] = 200;
-       topkiY[0] = 200;
+       ballsX[0] = 200;
+       ballsY[0] = 200;
        otmestvaneX[0] = 2;
        otmestvaneY[0] = 2;
        ballsRadius[0] = 40;
        successfulShotsCount += 1;
-       topkiX[1] = 200;
-       topkiY[1] = 200;
+       ballsX[1] = 200;
+       ballsY[1] = 200;
        otmestvaneX[1] =- 2;
        otmestvaneY[1] = 2;
        ballsRadius[1] = 40;
@@ -120,14 +120,14 @@ window.addEventListener("mouseup", function (args) {
      }
 
      if(level == 4){
-       topkiX[0] = 200;
-       topkiY[0] = 200;
+       ballsX[0] = 200;
+       ballsY[0] = 200;
        otmestvaneX[0] = 2;
        otmestvaneY[0] = 2;
        ballsRadius[0] = 80;
        successfulShotsCount += 1;
-       topkiX[1] = 200;
-       topkiY[1] = 200;
+       ballsX[1] = 200;
+       ballsY[1] = 200;
        otmestvaneX[1] = -2;
        otmestvaneY[1] = 2;
        ballsRadius[1] = 80;
@@ -135,20 +135,20 @@ window.addEventListener("mouseup", function (args) {
      }
 
      if(level == 5){
-       topkiX[0] = 200;
-       topkiY[0] = 200;
+       ballsX[0] = 200;
+       ballsY[0] = 200;
        otmestvaneX[0] = 2;
        otmestvaneY[0] = 2;
        ballsRadius[0] = 40;
        successfulShotsCount += 1;
-       topkiX[1] = 200;
-       topkiY[1] = 200;
+       ballsX[1] = 200;
+       ballsY[1] = 200;
        otmestvaneX[1] = -2;
        otmestvaneY[1] = 2;
        ballsRadius[1] = 40;
        successfulShotsCount += 1;
-       topkiX[2] = 200;
-       topkiY[2] = 200;
+       ballsX[2] = 200;
+       ballsY[2] = 200;
        otmestvaneX[2] = 2;
        otmestvaneY[2] = 2;
        ballsRadius[2] = 40;
@@ -177,7 +177,6 @@ var radi = r1 + r2;
    }else{
        return false;
    }
-
 }
 //--------------------------------------------End of collision function----------------------------------------------
 
@@ -189,7 +188,7 @@ function update() {
        restartGame = true;
        lives = 3;
      }
-     console.log(topkiX[0],topkiY[0],ballsRadius[0],successfulShotsCount);
+     console.log(ballsX[0],ballsY[0],ballsRadius[0],successfulShotsCount);
     restartGame = true;
     for(i = 0; i < successfulShotsCount; i += 1){
       if(ballsRadius[i] >= 5){
@@ -220,19 +219,19 @@ function update() {
     }
      for(i = 0; i < successfulShotsCount; i += 1){
 
-        topkiX[i] = topkiX[i] + otmestvaneX[i];
-        topkiY[i] = topkiY[i] + otmestvaneY[i];
+        ballsX[i] = ballsX[i] + otmestvaneX[i];
+        ballsY[i] = ballsY[i] + otmestvaneY[i];
 
 
 
 
-    if(topkiX[i] + ballsRadius[i] > 800){
+    if(ballsX[i] + ballsRadius[i] > 800){
       otmestvaneX[i] = -2;
     }
-     if(topkiX[i] - ballsRadius[i] <= 0){
+     if(ballsX[i] - ballsRadius[i] <= 0){
        otmestvaneX[i] = 2;
     }
-    if(topkiY[i] + ballsRadius[i] > 600){
+    if(ballsY[i] + ballsRadius[i] > 600){
       otmestvaneY[i] = -5;
     }else{
            otmestvaneY[i] = otmestvaneY[i] + 0.04;
@@ -269,12 +268,12 @@ function draw() {
        if(win){
          context.fillStyle = "rgb(255, 0, 0)";
          context.font = "100px Verdana";
-         context.fillText("YOU WIN", 230, 100);
+         context.fillText("You Win", 150, 100);
        }
        if(loose){
-          context.fillStyle = "rgb(255, 0, 0)";
+          context.fillStyle = "rgb(0, 0, 0)";
          context.font = "100px Verdana";
-         context.fillText("YOU Loose", 170, 100);
+         context.fillText("You Loose", 150, 100);
        }
     }
 
@@ -286,10 +285,10 @@ function draw() {
 
     for(i = 0; i < successfulShotsCount; i += 1){
 
-      if(collision(myX,myY,5,topkiX[i],topkiY[i],ballsRadius[i]) && shooting && ballsRadius[i] >= 5){
+      if(collision(myX,myY,5,ballsX[i],ballsY[i],ballsRadius[i]) && shooting && ballsRadius[i] >= 5){
 
-        topkiX[successfulShotsCount] = topkiX[i];
-        topkiY[successfulShotsCount] = topkiY[i];
+        ballsX[successfulShotsCount] = ballsX[i];
+        ballsY[successfulShotsCount] = ballsY[i];
         otmestvaneX[successfulShotsCount] =- otmestvaneX[i];
         otmestvaneY[successfulShotsCount] =- 3;
         otmestvaneY[i] =- 3;
@@ -303,13 +302,13 @@ function draw() {
 
        context.beginPath();
         if(ballsRadius[i] >= 5){
-        context.arc(topkiX[i],topkiY[i],ballsRadius[i],0,2*Math.PI);
+        context.arc(ballsX[i],ballsY[i],ballsRadius[i],0,2*Math.PI);
         //balls to shoot at border + color
         context.lineWidth = 3;   
         context.strokeStyle = "#C1D72E";  
         context.stroke();  
         }
-        if(pX+30>topkiX[i] && pX<topkiX[i]+ballsRadius[i] && pY+60>topkiY[i] && pY<topkiY[i]+ballsRadius[i] && ballsRadius[i]>=5){
+        if(pX + 30 > ballsX[i] && pX < ballsX[i] + ballsRadius[i] && pY + 60>ballsY[i] && pY < ballsY[i] + ballsRadius[i] && ballsRadius[i] >= 5){
           restartGame = true;
           loose = true;
         }

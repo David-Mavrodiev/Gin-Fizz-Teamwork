@@ -5,7 +5,7 @@ var requestAnimationFrame = window.requestAnimationFrame ||
     function (callback) { setTimeout (callback, 1000 / 30); },
 
     canvas = document.getElementById("canvas-id");
-    context = canvas.getContext("2d");
+context = canvas.getContext("2d");
 
 var myX = 200 + 14,
     myY = 550,
@@ -15,16 +15,10 @@ var myX = 200 + 14,
     shooting = false, //becames true when startGame or restartGame
     playerX = 200,
     playerY = 550,
-<<<<<<< HEAD
-    lives = 3, //number of starting lives
-    crash = new Audio("./fireCracker.wav"),  //Sound played when level is completed.
-    ballHit=new Audio("./POP.wav"), //Sound when ball is hit.
-=======
     lives = 3, //number of starting lves
     crash = new Audio("./audio/fireCracker.wav"),  //Sound played when level is completed.
     ballHit=new Audio("./audio/POP.wav"), //Sound when ball is hit.
     GameOver=new Audio("./audio/Violin.mp3"),
->>>>>>> origin/master
     startGame = true,
     restartGame = false,
     level = 1, // Level of the game 1 to 5
@@ -42,7 +36,7 @@ var myX = 200 + 14,
     deviationX = [],
     deviationY = [],
     ballsRadius = []; //Radius of the balls
-    ballsX[0] = 200,  //starting position of first ball X
+ballsX[0] = 200,  //starting position of first ball X
     ballsY[0] = 200,  //starting position of first ball Y
     deviationX[0] = 2,
     deviationY[0] = 2,
@@ -50,10 +44,10 @@ var myX = 200 + 14,
     successfulShotsCount += 1;
 
 var ninja = new Image();
-    ninja.src = "./img/ninja-left.png";
+ninja.src = "./img/ninja-left.png";
 
 var background = new Image();
-    background.src = "./img/game-background.jpg";
+background.src = "./img/game-background.jpg";
 
 var intro = document.getElementById("media"); //audio tag
 
@@ -183,7 +177,7 @@ canvas.addEventListener("mousemove", function (args) {
 function collision (p1x,p1y,r1,p2x,p2y,r2){
     d = Math.sqrt((p1x - p2x) * (p1x - p2x) + (p1y - p2y) * (p1y - p2y));
     var radi = r1 + r2;
-    
+
 
     if(radi > d){
         ballHit.play();
@@ -291,18 +285,18 @@ function draw() {
             context.fillText("Gongratulations", 20, 150);
             context.fillText("Next Level: " + level, 120, 250);
             crash.play();
-            
+
         }
         if(lose){
             context.fillStyle = "rgb(0, 0, 0)";
             context.font = "100px Shojumaru-Regular";
             if (lives > 1 ){
-            context.fillText("Lifes left:", 60, 150);
-            context.fillText((lives - 1), 350, 250);
+                context.fillText("Lifes left:", 60, 150);
+                context.fillText((lives - 1), 350, 250);
             }
             else{
-            context.fillText("Game Over" , 60, 150);
-            GameOver.play();
+                context.fillText("Game Over" , 60, 150);
+                GameOver.play();
             }
         }
     }
@@ -374,14 +368,17 @@ function draw() {
             context.restore();
         }
         star(10,4,0.5);
-
+        
         context.fillStyle = "#2E2E1F";  
         context.fill();
         context.lineWidth = 2;  
         context.strokeStyle = "#C1D72E";  
         context.stroke();  
-        
+
+
+        context.fill();
         context.drawImage(ninja,playerX,playerY,60,50);
+
 
     }
 

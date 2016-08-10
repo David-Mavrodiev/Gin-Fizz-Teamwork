@@ -10,13 +10,11 @@ var requestAnimationFrame = window.requestAnimationFrame ||
 var myX = 200 + 14,
     myY = 550,
     mouseMovementX = 0,
-    myX2 = 400,
-    myY2 = 400,
     mouseMovementY = 0,
     d = 0,
     shooting = false, //becames true when startGame or restartGame
-    pX = 200,
-    pY = 550,
+    playerX = 200,
+    playerY = 550,
     lives = 3, //number of starting lves
     crash = new Audio('fireCracker.wav'),  //Sound played when ball is hit.
     startGame = true,
@@ -72,8 +70,8 @@ canvas.addEventListener("mouseup", function (args) {
         myY = 550;
         d = 0;
         shooting = false;
-        pX = 200;
-        pY = 550;
+        playerX = 200;
+        playerY = 550;
         restartGame = false;
         win = false;
         loose = false;
@@ -208,15 +206,15 @@ function update() {
             win = true;
             level = level + 1;
         }
-        pX = mouseMovementX;
-        if(pX < 1){
-            pX = 1;
+        playerX = mouseMovementX;
+        if(playerX < 1){
+            playerX = 1;
         }
-        if(pX > 750){
-            pX = 750;
+        if(playerX > 750){
+            playerX = 750;
         }
         if(!shooting){
-            myX = pX + 14;
+            myX = playerX + 14;
         }
         if(shooting){
             myY = myY - 5;
@@ -224,7 +222,7 @@ function update() {
         if(myY - 5 <= 0){
             shooting = false;
             myY = 550;
-            myX = pX + 14;
+            myX = playerX + 14;
         }
         for(i = 0; i < successfulShotsCount; i += 1){
 
@@ -321,7 +319,7 @@ function draw() {
                 context.strokeStyle = "#C1D72E";
                 context.stroke();
             }
-            if(pX + 30 > ballsX[i] && pX < ballsX[i] + ballsRadius[i] && pY + 60>ballsY[i] && pY < ballsY[i] + ballsRadius[i] && ballsRadius[i] >= 5){
+            if(playerX + 30 > ballsX[i] && playerX < ballsX[i] + ballsRadius[i] && playerY + 60>ballsY[i] && playerY < ballsY[i] + ballsRadius[i] && ballsRadius[i] >= 5){
                 restartGame = true;
                 loose = true;
             }
@@ -349,7 +347,7 @@ function draw() {
 
 
         context.fill();
-        context.drawImage(ninja,pX,pY,60,50);
+        context.drawImage(ninja,playerX,playerY,60,50);
 
 
     }

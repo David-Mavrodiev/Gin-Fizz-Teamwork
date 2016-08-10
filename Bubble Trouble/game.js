@@ -18,7 +18,7 @@ var myX = 200 + 14,
     pX = 200,
     pY = 550,
     lives = 3; //number of starting lves
-
+crash = new Audio('fireCracker.wav');
 var startGame = true,
     restartGame = false,
     level = 1, // Level of the game 1 to 5
@@ -31,6 +31,7 @@ ninja.src = "./img/ninja-left.png";
 var background = new Image();
 background.src = "./img/game-background.jpg";
 
+crash = new Audio('fireCracker.wav');//Sound played when ball is hit!
 
 var deviationX = 2,
     deviationY = 2,
@@ -86,28 +87,28 @@ canvas.addEventListener("mouseup", function (args) {
         }
         successfulShotsCount=0;
         if(level == 1){
-            ballsX[0] = 200;
-            ballsY[0] = 200;
-            deviationX[0] = 2;
-            deviationY[0] = 2;
+            // ballsX[0] = 200;
+            // ballsY[0] = 200;
+            // deviationX[0] = 2;
+            // deviationY[0] = 2;
             ballsRadius[0] = 40;
             successfulShotsCount += 1;
         }
 
         if(level == 2 ){
-            ballsX[0] = 200;
-            ballsY[0] = 200;
-            deviationX[0] = 2;
-            deviationY[0] = 2;
+            // ballsX[0] = 200;
+            // ballsY[0] = 200;
+            // deviationX[0] = 2;
+            // deviationY[0] = 2;
             ballsRadius[0] = 80;
             successfulShotsCount += 1;
         }
 
         if(level == 3){
-            ballsX[0] = 200;
-            ballsY[0] = 200;
-            deviationX[0] = 2;
-            deviationY[0] = 2;
+            // ballsX[0] = 200;
+            // ballsY[0] = 200;
+            // deviationX[0] = 2;
+            // deviationY[0] = 2;
             ballsRadius[0] = 40;
             successfulShotsCount += 1;
             ballsX[1] = 200;
@@ -119,10 +120,10 @@ canvas.addEventListener("mouseup", function (args) {
         }
 
         if(level == 4){
-            ballsX[0] = 200;
-            ballsY[0] = 200;
-            deviationX[0] = 2;
-            deviationY[0] = 2;
+            // ballsX[0] = 200;
+            // ballsY[0] = 200;
+            // deviationX[0] = 2;
+            // deviationY[0] = 2;
             ballsRadius[0] = 80;
             successfulShotsCount += 1;
             ballsX[1] = 200;
@@ -134,10 +135,10 @@ canvas.addEventListener("mouseup", function (args) {
         }
 
         if(level == 5){
-            ballsX[0] = 200;
-            ballsY[0] = 200;
-            deviationX[0] = 2;
-            deviationY[0] = 2;
+            // ballsX[0] = 200;
+            // ballsY[0] = 200;
+            // deviationX[0] = 2;
+            // deviationY[0] = 2;
             ballsRadius[0] = 40;
             successfulShotsCount += 1;
             ballsX[1] = 200;
@@ -176,10 +177,10 @@ canvas.addEventListener("mousemove", function (args) {
 function collision (p1x,p1y,r1,p2x,p2y,r2){
     d = Math.sqrt((p1x - p2x) * (p1x - p2x) + (p1y - p2y) * (p1y - p2y));
     var radi = r1 + r2;
-    var crash = new Audio('fireCracker.wav');
+    
 
     if(radi > d){
-        //crash.play();
+        crash.play();
         return true;
 
 

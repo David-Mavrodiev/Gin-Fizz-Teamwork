@@ -5,8 +5,6 @@ var requestAnimationFrame = window.requestAnimationFrame ||
     function (callback) { setTimeout (callback, 1000 / 30); };
 
 var canvas = document.getElementById("canvas-id");
-canvas.width = 800;
-canvas.height = 600;
 var context = canvas.getContext("2d");
 
 var myX = 200 + 14,
@@ -181,7 +179,7 @@ function collision (p1x,p1y,r1,p2x,p2y,r2){
     var crash = new Audio('fireCracker.wav');
 
     if(radi > d){
-        crash.play();
+        //crash.play();
         return true;
 
 

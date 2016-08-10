@@ -2,7 +2,11 @@ var requestAnimationFrame = window.requestAnimationFrame ||
     window.mozRequestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
     window.msRequestAnimationFrame ||
+<<<<<<< Updated upstream
     function (callback) { setTimeout (callback, 1000 / 30); },
+=======
+    function (callback) { setTimeout(callback, 1000 / 30); };
+>>>>>>> Stashed changes
 
     canvas = document.getElementById("canvas-id");
     context = canvas.getContext("2d");
@@ -84,12 +88,21 @@ canvas.addEventListener("mouseup", function (args) {
             deviationY[i] = 0;
             ballsRadius[i] = 0;
         }
+<<<<<<< Updated upstream
         successfulShotsCount=0;
         if(level == 1){
             // ballsX[0] = 200;
             // ballsY[0] = 200;
             // deviationX[0] = 2;
             // deviationY[0] = 2;
+=======
+        successfulShotsCount = 0;
+        if(level === 1){
+            ballsX[0] = 200;
+            ballsY[0] = 200;
+            deviationX[0] = 2;
+            deviationY[0] = 2;
+>>>>>>> Stashed changes
             ballsRadius[0] = 40;
             successfulShotsCount += 1;
         }
@@ -173,7 +186,7 @@ canvas.addEventListener("mousemove", function (args) {
 
 
 
-function collision (p1x,p1y,r1,p2x,p2y,r2){
+function collision (p1x, p1y, r1, p2x, p2y, r2){
     d = Math.sqrt((p1x - p2x) * (p1x - p2x) + (p1y - p2y) * (p1y - p2y));
     var radi = r1 + r2;
     
@@ -286,7 +299,7 @@ function draw() {
         if(loose){
             context.fillStyle = "rgb(0, 0, 0)";
             context.font = "100px Shojumaru-Regular";
-            context.fillText("You Loose", 60, 150);
+            context.fillText("You Lose", 60, 150);
         }
     }
 

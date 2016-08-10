@@ -22,7 +22,7 @@ var myX = 200 + 14,
     restartGame = false,
     level = 1, // Level of the game 1 to 5
     win = false,
-    loose = false,
+    lose = false,
 
 
     deviationX = 2,
@@ -66,7 +66,7 @@ canvas.addEventListener("mouseup", function (args) {
         startGame = false;
     }
     if(restartGame && level <= 5){
-        if(loose){
+        if(lose){
             lives = lives - 1;
         }
         myY = 550;
@@ -76,7 +76,7 @@ canvas.addEventListener("mouseup", function (args) {
         playerY = 550;
         restartGame = false;
         win = false;
-        loose = false;
+        lose = false;
         for(i = 0; i < successfulShotsCount; i += 1){
             ballsX[i] = 0;
             ballsY[i] = 0;
@@ -286,7 +286,7 @@ function draw() {
             crash.play();
             
         }
-        if(loose){
+        if(lose){
             context.fillStyle = "rgb(0, 0, 0)";
             context.font = "100px Shojumaru-Regular";
             if (lives > 1 ){
@@ -332,7 +332,7 @@ function draw() {
             }
             if(playerX + 30 > ballsX[i] && playerX < ballsX[i] + ballsRadius[i] && playerY + 60>ballsY[i] && playerY < ballsY[i] + ballsRadius[i] && ballsRadius[i] >= 5){
                 restartGame = true;
-                loose = true;
+                lose = true;
             }
             context.fill();
 
@@ -348,16 +348,31 @@ function draw() {
         context.font = "30px Shojumaru-Regular";
         context.fillText("LIVES: " +lives, 630, 40); 
 
-        context.beginPath();  
-        context.arc(myX,myY,5,0,2*Math.PI);
+        //(canvas, x of center, y of center, radius, number of points, fraction of radius for inset)
+
+        function star(r, p, m)
+        {
+            context.save();
+            context.beginPath();
+            context.translate(myX, myY);
+            context.moveTo(0,0-r);
+            for (var i = 0; i < p; i++)
+            {
+                context.rotate(Math.PI / p);
+                context.lineTo(0, 0 - (r*m));
+                context.rotate(Math.PI / p);
+                context.lineTo(0, 0 - r);
+            }
+            context.restore();
+        }
+        star(10,4,0.5);
+
         context.fillStyle = "#2E2E1F";  
         context.fill();
-        context.lineWidth = 7;  
+        context.lineWidth = 2;  
         context.strokeStyle = "#C1D72E";  
         context.stroke();  
-
-
-        context.fill();
+        
         context.drawImage(ninja,playerX,playerY,60,50);
 
     }

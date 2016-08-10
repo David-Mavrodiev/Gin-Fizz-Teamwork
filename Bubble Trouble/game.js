@@ -16,8 +16,9 @@ var myX = 200 + 14,
     playerX = 200,
     playerY = 550,
     lives = 3, //number of starting lves
-    crash = new Audio("./fireCracker.wav"),  //Sound played when level is completed.
-    ballHit=new Audio("./POP.wav"), //Sound when ball is hit.
+    crash = new Audio("./audio/fireCracker.wav"),  //Sound played when level is completed.
+    ballHit=new Audio("./audio/POP.wav"), //Sound when ball is hit.
+    GameOver=new Auido("./audio/Violin.mp3");
     startGame = true,
     restartGame = false,
     level = 1, // Level of the game 1 to 5
@@ -295,6 +296,7 @@ function draw() {
             }
             else{
             context.fillText("Game Over" , 60, 150);
+            GameOver.play();
             }
         }
     }

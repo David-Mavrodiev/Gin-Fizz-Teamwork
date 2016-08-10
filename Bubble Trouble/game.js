@@ -15,7 +15,7 @@ var myX = 200 + 14,
     shooting = false, //becames true when startGame or restartGame
     playerX = 200,
     playerY = 550,
-    lives = 3, //number of starting lves
+    lives = 3, //number of starting lives
     crash = new Audio("./fireCracker.wav"),  //Sound played when level is completed.
     ballHit=new Audio("./POP.wav"), //Sound when ball is hit.
     startGame = true,
@@ -359,7 +359,6 @@ function draw() {
 
         context.fill();
         context.drawImage(ninja,playerX,playerY,60,50);
-
 
     }
 

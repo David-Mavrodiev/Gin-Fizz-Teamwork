@@ -66,7 +66,6 @@ canvas.addEventListener("mouseup", function (args) {
         if(loose){
             lives = lives - 1;
         }
-        myX = 200 + 14;
         myY = 550;
         d = 0;
         shooting = false;
@@ -284,7 +283,13 @@ function draw() {
         if(loose){
             context.fillStyle = "rgb(0, 0, 0)";
             context.font = "100px Shojumaru-Regular";
-            context.fillText("You Loose", 60, 150);
+            if (lives > 1 ){
+            context.fillText("Lifes left:", 60, 150);
+            context.fillText((lives - 1), 350, 250);
+            }
+            else{
+            context.fillText("Game Over" , 60, 150);
+            }
         }
     }
 

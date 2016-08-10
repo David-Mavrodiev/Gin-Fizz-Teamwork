@@ -2,10 +2,10 @@ var requestAnimationFrame = window.requestAnimationFrame ||
     window.mozRequestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
     window.msRequestAnimationFrame ||
-    function (callback) { setTimeout (callback, 1000 / 30); };
+    function (callback) { setTimeout (callback, 1000 / 30); },
 
-var canvas = document.getElementById("canvas-id");
-var context = canvas.getContext("2d");
+    canvas = document.getElementById("canvas-id");
+    context = canvas.getContext("2d");
 
 var myX = 200 + 14,
     myY = 550,
@@ -17,38 +17,38 @@ var myX = 200 + 14,
     shooting = false, //becames true when startGame or restartGame
     pX = 200,
     pY = 550,
-    lives = 3; //number of starting lves
-crash = new Audio('fireCracker.wav');
-var startGame = true,
+    lives = 3, //number of starting lves
+    crash = new Audio('fireCracker.wav'),
+    startGame = true,
     restartGame = false,
     level = 1, // Level of the game 1 to 5
     win = false,
-    loose = false;
+    loose = false,
 
-var ninja = new Image();
-ninja.src = "./img/ninja-left.png";
+    crash = new Audio('fireCracker.wav'),  //Sound played when ball is hit!
 
-var background = new Image();
-background.src = "./img/game-background.jpg";
-
-crash = new Audio('fireCracker.wav');//Sound played when ball is hit!
-
-var deviationX = 2,
+    deviationX = 2,
     deviationY = 2,
-    successfulShotsCount = 0; //number of times we hit a ball
+    successfulShotsCount = 0, //number of times we hit a ball
 
-var ballsX = [],
+    ballsX = [],
     ballsY = [],
     i,
     deviationX = [],
     deviationY = [],
     ballsRadius = []; //Radius of the balls
-ballsX[0] = 200;  //starting position of first ball X
-ballsY[0] = 200;  //starting position of first ball Y
-deviationX[0] = 2;
-deviationY[0] = 2;
-ballsRadius[0] = 40;
-successfulShotsCount += 1;
+    ballsX[0] = 200,  //starting position of first ball X
+    ballsY[0] = 200,  //starting position of first ball Y
+    deviationX[0] = 2,
+    deviationY[0] = 2,
+    ballsRadius[0] = 40,
+    successfulShotsCount += 1;
+
+var ninja = new Image();
+    ninja.src = "./img/ninja-left.png";
+
+var background = new Image();
+    background.src = "./img/game-background.jpg";
 
 //--------------------------------------------Start of keydown event----------------------------------------------
 window.addEventListener("keydown", function (args) {
@@ -335,19 +335,18 @@ function draw() {
         context.shadowBlur    = 0;
         context.fillStyle = "#C1D72E";
         context.font = "30px Shojumaru-Regular";
-        context.fillText("LEVEL: "+level, 20, 40); // context.fillText("LEVEL:"+level, 100, 50); //shows top left //yasen 01.08
+        context.fillText("LEVEL: "+level, 20, 40); 
         context.fillStyle = "#C1D72E";
         context.font = "30px Shojumaru-Regular";
-        context.fillText("LIVES: " +lives, 630, 40); //context.fillText("LIVES:"+lives, 400, 50); //shows top right //yasen 01.08
+        context.fillText("LIVES: " +lives, 630, 40); 
 
-        context.beginPath();  //new line
+        context.beginPath();  
         context.arc(myX,myY,5,0,2*Math.PI);
-        context.fillStyle = "#2E2E1F";  //context.fillStyle="red";  //change color of balls //yasen 01.08
+        context.fillStyle = "#2E2E1F";  
         context.fill();
-        context.lineWidth = 7;   //new line  //yasen 01.08
-        context.strokeStyle = "#C1D72E";  //green border for bigger shooting ball //yasen 01.08
-        context.stroke();  //new line //yasen 01.08
-
+        context.lineWidth = 7;  
+        context.strokeStyle = "#C1D72E";  
+        context.stroke();  
 
 
         context.fill();

@@ -18,14 +18,13 @@ var myX = 200 + 14,
     pX = 200,
     pY = 550,
     lives = 3, //number of starting lves
-    crash = new Audio('fireCracker.wav'),
+    crash = new Audio('fireCracker.wav'),  //Sound played when ball is hit.
     startGame = true,
     restartGame = false,
     level = 1, // Level of the game 1 to 5
     win = false,
     loose = false,
 
-    crash = new Audio('fireCracker.wav'),  //Sound played when ball is hit!
 
     deviationX = 2,
     deviationY = 2,

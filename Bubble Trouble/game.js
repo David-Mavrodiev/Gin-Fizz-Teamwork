@@ -2,10 +2,10 @@ var requestAnimationFrame = window.requestAnimationFrame ||
     window.mozRequestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
     window.msRequestAnimationFrame ||
-    function (callback) { setTimeout (callback, 1000 / 30); },
+    function (callback) { setTimeout (callback, 1000 / 30); };
 
-    canvas = document.getElementById("canvas-id");
-    context = canvas.getContext("2d");
+var canvas = document.getElementById("canvas-id");
+var context = canvas.getContext("2d");
 
 var myX = 200 + 14,
     myY = 550,
@@ -13,50 +13,74 @@ var myX = 200 + 14,
     mouseMovementY = 0,
     d = 0,
     shooting = false, //becames true when startGame or restartGame
+<<<<<<< HEAD
+    pX = 200,
+    pY = 550,
+    lives = 3; //number of starting lves
+
+var startGame = true,
+=======
     playerX = 200,
     playerY = 550,
     lives = 3, //number of starting lves
     crash = new Audio('fireCracker.wav'),  //Sound played when level is completed.
     ballHit=new Audio("POP.wav"), //Sound when ball is hit.
     startGame = true,
+>>>>>>> master
     restartGame = false,
     level = 1, // Level of the game 1 to 5
     win = false,
-    loose = false,
+    loose = false;
+
+var ninja = new Image();
+ninja.src = "./img/ninja-left.png";
+
+var background = new Image();
+background.src = "./img/game-background.jpg";
 
 
-    deviationX = 2,
+var deviationX = 2,
     deviationY = 2,
-    successfulShotsCount = 0, //number of times we hit a ball
+    successfulShotsCount = 0; //number of times we hit a ball
 
-    ballsX = [],
+var ballsX = [],
     ballsY = [],
     i,
     deviationX = [],
     deviationY = [],
     ballsRadius = []; //Radius of the balls
-    ballsX[0] = 200,  //starting position of first ball X
-    ballsY[0] = 200,  //starting position of first ball Y
-    deviationX[0] = 2,
-    deviationY[0] = 2,
-    ballsRadius[0] = 40,
-    successfulShotsCount += 1;
+ballsX[0] = 200;  //starting position of first ball X
+ballsY[0] = 200;  //starting position of first ball Y
+deviationX[0] = 2;
+deviationY[0] = 2;
+ballsRadius[0] = 40;
+successfulShotsCount += 1;
 
-var ninja = new Image();
-    ninja.src = "./img/ninja-left.png";
+//-------------------------------------------End of intro music-----------------------------------------------
+var intro = document.getElementById("media");
 
-var background = new Image();
-    background.src = "./img/game-background.jpg";
+window.addEventListener("mousedown", function (args) {
+
+    stopIntro();
+
+}, true);
+
+function stopIntro() {
+    intro.pause();
+    intro.currentTime = 0;
+}
 
 //--------------------------------------------Start of keydown event----------------------------------------------
 window.addEventListener("keydown", function (args) {
 
     console.log(args.which);
+
 }, true);
 //--------------------------------------------End of keydown event----------------------------------------------
 
 //--------------------------------------------Start of mouseup event----------------------------------------------
 canvas.addEventListener("mouseup", function (args) {
+
     if(!startGame && !restartGame){
         shooting = true;
     }
@@ -84,28 +108,28 @@ canvas.addEventListener("mouseup", function (args) {
         }
         successfulShotsCount=0;
         if(level == 1){
-            // ballsX[0] = 200;
-            // ballsY[0] = 200;
-            // deviationX[0] = 2;
-            // deviationY[0] = 2;
+            ballsX[0] = 200;
+            ballsY[0] = 200;
+            deviationX[0] = 2;
+            deviationY[0] = 2;
             ballsRadius[0] = 40;
             successfulShotsCount += 1;
         }
 
         if(level == 2 ){
-            // ballsX[0] = 200;
-            // ballsY[0] = 200;
-            // deviationX[0] = 2;
-            // deviationY[0] = 2;
+            ballsX[0] = 200;
+            ballsY[0] = 200;
+            deviationX[0] = 2;
+            deviationY[0] = 2;
             ballsRadius[0] = 80;
             successfulShotsCount += 1;
         }
 
         if(level == 3){
-            // ballsX[0] = 200;
-            // ballsY[0] = 200;
-            // deviationX[0] = 2;
-            // deviationY[0] = 2;
+            ballsX[0] = 200;
+            ballsY[0] = 200;
+            deviationX[0] = 2;
+            deviationY[0] = 2;
             ballsRadius[0] = 40;
             successfulShotsCount += 1;
             ballsX[1] = 200;
@@ -117,10 +141,10 @@ canvas.addEventListener("mouseup", function (args) {
         }
 
         if(level == 4){
-            // ballsX[0] = 200;
-            // ballsY[0] = 200;
-            // deviationX[0] = 2;
-            // deviationY[0] = 2;
+            ballsX[0] = 200;
+            ballsY[0] = 200;
+            deviationX[0] = 2;
+            deviationY[0] = 2;
             ballsRadius[0] = 80;
             successfulShotsCount += 1;
             ballsX[1] = 200;
@@ -132,10 +156,10 @@ canvas.addEventListener("mouseup", function (args) {
         }
 
         if(level == 5){
-            // ballsX[0] = 200;
-            // ballsY[0] = 200;
-            // deviationX[0] = 2;
-            // deviationY[0] = 2;
+            ballsX[0] = 200;
+            ballsY[0] = 200;
+            deviationX[0] = 2;
+            deviationY[0] = 2;
             ballsRadius[0] = 40;
             successfulShotsCount += 1;
             ballsX[1] = 200;
@@ -174,10 +198,14 @@ canvas.addEventListener("mousemove", function (args) {
 function collision (p1x,p1y,r1,p2x,p2y,r2){
     d = Math.sqrt((p1x - p2x) * (p1x - p2x) + (p1y - p2y) * (p1y - p2y));
     var radi = r1 + r2;
-    
+    var crash = new Audio('fireCracker.wav');
 
     if(radi > d){
+<<<<<<< HEAD
+        //crash.play();
+=======
         ballHit.play();
+>>>>>>> master
         return true;
 
 
@@ -341,18 +369,19 @@ function draw() {
         context.shadowBlur    = 0;
         context.fillStyle = "#C1D72E";
         context.font = "30px Shojumaru-Regular";
-        context.fillText("LEVEL: "+level, 20, 40); 
+        context.fillText("LEVEL: "+level, 20, 40); // context.fillText("LEVEL:"+level, 100, 50); //shows top left //yasen 01.08
         context.fillStyle = "#C1D72E";
         context.font = "30px Shojumaru-Regular";
-        context.fillText("LIVES: " +lives, 630, 40); 
+        context.fillText("LIVES: " +lives, 630, 40); //context.fillText("LIVES:"+lives, 400, 50); //shows top right //yasen 01.08
 
-        context.beginPath();  
+        context.beginPath();  //new line
         context.arc(myX,myY,5,0,2*Math.PI);
-        context.fillStyle = "#2E2E1F";  
+        context.fillStyle = "#2E2E1F";  //context.fillStyle="red";  //change color of balls //yasen 01.08
         context.fill();
-        context.lineWidth = 7;  
-        context.strokeStyle = "#C1D72E";  
-        context.stroke();  
+        context.lineWidth = 7;   //new line  //yasen 01.08
+        context.strokeStyle = "#C1D72E";  //green border for bigger shooting ball //yasen 01.08
+        context.stroke();  //new line //yasen 01.08
+
 
 
         context.fill();

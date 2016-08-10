@@ -9,12 +9,12 @@ var requestAnimationFrame = window.requestAnimationFrame ||
 
 var myX = 200 + 14,
     myY = 550,
-    mouseMovementX = 200    ,
-    mouseMovementY = 550,
+    mouseMovementX = 0,
+    mouseMovementY = 0,
     d = 0,
     shooting = false, //becames true when startGame or restartGame
-    playerX = 0,
-    playerY = 0,
+    playerX = 200,
+    playerY = 550,
     lives = 3, //number of starting lves
     crash = new Audio('fireCracker.wav'),  //Sound played when ball is hit.
     startGame = true,

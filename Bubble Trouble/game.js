@@ -7,8 +7,8 @@ var requestAnimationFrame = window.requestAnimationFrame ||
     canvas = document.getElementById("canvas-id");
 context = canvas.getContext("2d");
 
-var myX = 200 + 14,
-    myY = 550,
+var shurikenX = 200 + 14,
+    shurikenY = 550,
     mouseMovementX = 0,
     mouseMovementY = 0,
     d = 0,
@@ -24,8 +24,8 @@ var myX = 200 + 14,
     level = 1, // Level of the game 1 to 5
     win = false,
     lose = false,
-
-
+    shurikenSpeed=5,
+    mid=400,
     deviationX = 2,
     deviationY = 2,
     successfulShotsCount = 0, //number of times we hit a ball
@@ -42,9 +42,13 @@ ballsX[0] = 200,  //starting position of first ball X
     deviationY[0] = 2,
     ballsRadius[0] = 40,
     successfulShotsCount += 1;
-
-var ninja = new Image();
-ninja.src = "./img/ninja-left.png";
+var rightNinja=new Image();
+rightNinja.src="./img/ninja-right.png";
+var leftNinja=new Image();
+leftNinja.src="./img/ninja-left.png";
+var ninja=leftNinja;
+//var ninja = new Image();
+//ninja.src = "./img/ninja-left.png";
 
 var background = new Image();
 background.src = "./img/game-background.jpg";
@@ -70,7 +74,7 @@ canvas.addEventListener("mouseup", function (args) {
         if(lose){
             lives = lives - 1;
         }
-        myY = 550;
+        shurikenY = 550,
         d = 0;
         shooting = false;
         playerX = 200;
@@ -162,6 +166,12 @@ canvas.addEventListener("mouseup", function (args) {
 canvas.addEventListener("mousemove", function (args) {
     mouseMovementX = args.clientX-canvas.offsetLeft;
     mouseMovementY = args.clientY-canvas.offsetTop;
+    if(mouseMovementX>mid) {
+      ninja=leftNinja;
+    }
+    else {
+      ninja=rightNinja;
+    }
 
 
 }, false);
@@ -217,15 +227,25 @@ function update() {
             playerX = 750;
         }
         if(!shooting){
-            myX = playerX + 14;
+          if(ninja==leftNinja) {
+            shurikenX = playerX + 14;
+          }
+          else {
+            shurikenX=playerX+40;
+          }
         }
         if(shooting){
-            myY = myY - 5;
+            shurikenY = shurikenY - shurikenSpeed;
         }
-        if(myY - 5 <= 0){
+        if(shurikenY - 5 <= 0){
             shooting = false;
-            myY = 550;
-            myX = playerX + 14;
+            shurikenY = 550;
+            if(ninja==leftNinja) {
+            shurikenX = playerX + 14;
+          }
+          else {
+            shurikenx=playerX+40;
+          }
         }
         for(i = 0; i < successfulShotsCount; i += 1){
 
@@ -309,7 +329,7 @@ function draw() {
 
         for(i = 0; i < successfulShotsCount; i += 1){
 
-            if(collision(myX,myY,5,ballsX[i],ballsY[i],ballsRadius[i]) && shooting && ballsRadius[i] >= 5){
+            if(collision(shurikenX,shurikenY,5,ballsX[i],ballsY[i],ballsRadius[i]) && shooting && ballsRadius[i] >= 5){
 
                 ballsX[successfulShotsCount] = ballsX[i];
                 ballsY[successfulShotsCount] = ballsY[i];
@@ -319,7 +339,7 @@ function draw() {
                 ballsRadius[successfulShotsCount] = ballsRadius[i]/2;
                 ballsRadius[i] = ballsRadius[i] / 2;
                 successfulShotsCount += 1;
-                myY = 550;
+                shurikenY = 550;
                 shooting = false;
             }
 
@@ -345,10 +365,10 @@ function draw() {
         context.shadowBlur    = 0;
         context.fillStyle = "#C1D72E";
         context.font = "30px Shojumaru-Regular";
-        context.fillText("LEVEL: "+level, 20, 40); 
+        context.fillText("LEVEL: "+level, 20, 40);
         context.fillStyle = "#C1D72E";
         context.font = "30px Shojumaru-Regular";
-        context.fillText("LIVES: " +lives, 630, 40); 
+        context.fillText("LIVES: " +lives, 630, 40);
 
         //(canvas, x of center, y of center, radius, number of points, fraction of radius for inset)
 
@@ -356,7 +376,7 @@ function draw() {
         {
             context.save();
             context.beginPath();
-            context.translate(myX, myY);
+            context.translate(shurikenX, shurikenY);
             context.moveTo(0,0-r);
             for (var i = 0; i < p; i++)
             {
@@ -368,12 +388,12 @@ function draw() {
             context.restore();
         }
         star(10,4,0.5);
-        
-        context.fillStyle = "#2E2E1F";  
+
+        context.fillStyle = "#2E2E1F";
         context.fill();
-        context.lineWidth = 2;  
-        context.strokeStyle = "#C1D72E";  
-        context.stroke();  
+        context.lineWidth = 2;
+        context.strokeStyle = "#C1D72E";
+        context.stroke();
 
 
         context.fill();

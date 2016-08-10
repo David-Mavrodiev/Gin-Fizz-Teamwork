@@ -10,16 +10,23 @@ var context = canvas.getContext("2d");
 var myX = 200 + 14,
     myY = 550,
     mouseMovementX = 0,
-    myX2 = 400,
-    myY2 = 400,
     mouseMovementY = 0,
     d = 0,
     shooting = false, //becames true when startGame or restartGame
+<<<<<<< HEAD
     pX = 200,
     pY = 550,
     lives = 3; //number of starting lves
 
 var startGame = true,
+=======
+    playerX = 200,
+    playerY = 550,
+    lives = 3, //number of starting lves
+    crash = new Audio('fireCracker.wav'),  //Sound played when level is completed.
+    ballHit=new Audio("POP.wav"), //Sound when ball is hit.
+    startGame = true,
+>>>>>>> master
     restartGame = false,
     level = 1, // Level of the game 1 to 5
     win = false,
@@ -84,12 +91,11 @@ canvas.addEventListener("mouseup", function (args) {
         if(loose){
             lives = lives - 1;
         }
-        myX = 200 + 14;
         myY = 550;
         d = 0;
         shooting = false;
-        pX = 200;
-        pY = 550;
+        playerX = 200;
+        playerY = 550;
         restartGame = false;
         win = false;
         loose = false;
@@ -195,7 +201,11 @@ function collision (p1x,p1y,r1,p2x,p2y,r2){
     var crash = new Audio('fireCracker.wav');
 
     if(radi > d){
+<<<<<<< HEAD
         //crash.play();
+=======
+        ballHit.play();
+>>>>>>> master
         return true;
 
 
@@ -224,15 +234,15 @@ function update() {
             win = true;
             level = level + 1;
         }
-        pX = mouseMovementX;
-        if(pX < 1){
-            pX = 1;
+        playerX = mouseMovementX;
+        if(playerX < 1){
+            playerX = 1;
         }
-        if(pX > 750){
-            pX = 750;
+        if(playerX > 750){
+            playerX = 750;
         }
         if(!shooting){
-            myX = pX + 14;
+            myX = playerX + 14;
         }
         if(shooting){
             myY = myY - 5;
@@ -240,7 +250,7 @@ function update() {
         if(myY - 5 <= 0){
             shooting = false;
             myY = 550;
-            myX = pX + 14;
+            myX = playerX + 14;
         }
         for(i = 0; i < successfulShotsCount; i += 1){
 
@@ -295,14 +305,23 @@ function draw() {
             context.fillText("Click to continue", 230, 520);
         }
         if(win){
-            context.fillStyle = "rgb(255, 117, 0)";
-            context.font = "100px Shojumaru-Regular";
-            context.fillText("You Win", 60, 150);
+            context.fillStyle = "rgb(0, 0, 0)";
+            context.font = "70px Shojumaru-Regular";
+            context.fillText("Gongratulations", 20, 150);
+            context.fillText("Next Level: " + level, 120, 250);
+            crash.play();
+            
         }
         if(loose){
             context.fillStyle = "rgb(0, 0, 0)";
             context.font = "100px Shojumaru-Regular";
-            context.fillText("You Loose", 60, 150);
+            if (lives > 1 ){
+            context.fillText("Lifes left:", 60, 150);
+            context.fillText((lives - 1), 350, 250);
+            }
+            else{
+            context.fillText("Game Over" , 60, 150);
+            }
         }
     }
 
@@ -337,7 +356,7 @@ function draw() {
                 context.strokeStyle = "#C1D72E";
                 context.stroke();
             }
-            if(pX + 30 > ballsX[i] && pX < ballsX[i] + ballsRadius[i] && pY + 60>ballsY[i] && pY < ballsY[i] + ballsRadius[i] && ballsRadius[i] >= 5){
+            if(playerX + 30 > ballsX[i] && playerX < ballsX[i] + ballsRadius[i] && playerY + 60>ballsY[i] && playerY < ballsY[i] + ballsRadius[i] && ballsRadius[i] >= 5){
                 restartGame = true;
                 loose = true;
             }
@@ -366,7 +385,7 @@ function draw() {
 
 
         context.fill();
-        context.drawImage(ninja,pX,pY,60,50);
+        context.drawImage(ninja,playerX,playerY,60,50);
 
 
     }

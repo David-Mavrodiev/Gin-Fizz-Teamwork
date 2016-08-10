@@ -9,12 +9,12 @@ var requestAnimationFrame = window.requestAnimationFrame ||
 
 var myX = 200 + 14,
     myY = 550,
-    mouseMovementX = 0,
-    mouseMovementY = 0,
+    mouseMovementX = 200    ,
+    mouseMovementY = 550,
     d = 0,
     shooting = false, //becames true when startGame or restartGame
-    playerX = 200,
-    playerY = 550,
+    playerX = 0,
+    playerY = 0,
     lives = 3, //number of starting lves
     crash = new Audio('fireCracker.wav'),  //Sound played when ball is hit.
     startGame = true,
@@ -276,9 +276,11 @@ function draw() {
             context.fillText("Click to continue", 230, 520);
         }
         if(win){
-            context.fillStyle = "rgb(255, 117, 0)";
-            context.font = "100px Shojumaru-Regular";
-            context.fillText("You Win", 60, 150);
+            context.fillStyle = "rgb(0, 0, 0)";
+            context.font = "70px Shojumaru-Regular";
+            context.fillText("Gongratulations", 20, 150);
+            context.fillText("Next Level: " + level, 120, 250);
+            
         }
         if(loose){
             context.fillStyle = "rgb(0, 0, 0)";

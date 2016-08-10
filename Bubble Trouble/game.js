@@ -48,6 +48,8 @@ var ninja = new Image();
 var background = new Image();
     background.src = "./img/game-background.jpg";
 
+var intro = document.getElementById("media"); //audio tag
+
 //--------------------------------------------Start of keydown event----------------------------------------------
 window.addEventListener("keydown", function (args) {
 
@@ -365,6 +367,18 @@ function draw() {
 }
 //--------------------------------------------End draw function----------------------------------------------
 
+//-------------------------------------------Start of intro music-----------------------------------------------
+window.addEventListener("mousedown", function (args) {
 
+    stopIntro();
+
+}, true);
+
+function stopIntro() {
+    intro.pause();
+    intro.currentTime = 0;
+}
+
+//-------------------------------------------End of intro music-----------------------------------------------
 update();
 draw();

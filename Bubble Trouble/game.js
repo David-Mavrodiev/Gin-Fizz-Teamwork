@@ -16,7 +16,8 @@ var myX = 200 + 14,
     playerX = 200,
     playerY = 550,
     lives = 3, //number of starting lves
-    crash = new Audio('fireCracker.wav'),  //Sound played when ball is hit.
+    crash = new Audio('fireCracker.wav'),  //Sound played when level is completed.
+    ballHit=new audio("POP.wav"); //Sound when ball is hit.
     startGame = true,
     restartGame = false,
     level = 1, // Level of the game 1 to 5
@@ -176,7 +177,7 @@ function collision (p1x,p1y,r1,p2x,p2y,r2){
     
 
     if(radi > d){
-        crash.play();
+        ballHit.play();
         return true;
 
 
@@ -280,6 +281,7 @@ function draw() {
             context.font = "70px Shojumaru-Regular";
             context.fillText("Gongratulations", 20, 150);
             context.fillText("Next Level: " + level, 120, 250);
+            crash.play();
             
         }
         if(loose){

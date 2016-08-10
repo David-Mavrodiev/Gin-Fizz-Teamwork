@@ -9,7 +9,7 @@ canvas.width = 800;
 canvas.height = 600;
 var context = canvas.getContext("2d");
 
-var myX = 200 + 14, 
+var myX = 200 + 14,
     myY = 550,
     mouseMovementX = 0,
     myX2 = 400,
@@ -30,24 +30,24 @@ var startGame = true,
 var ninja = new Image();
 ninja.src = "./img/ninja-left.png";
 
-var background = new Image(); 
+var background = new Image();
 background.src = "./img/game-background.jpg";
 
 
-var otmestvaneX = 2,
-    otmestvaneY = 2,
+var deviationX = 2,
+    deviationY = 2,
     successfulShotsCount = 0; //number of times we hit a ball
 
 var ballsX = [],
     ballsY = [],
     i,
-    otmestvaneX = [],
-    otmestvaneY = [],
+    deviationX = [],
+    deviationY = [],
     ballsRadius = []; //Radius of the balls
 ballsX[0] = 200;  //starting position of first ball X
 ballsY[0] = 200;  //starting position of first ball Y
-otmestvaneX[0] = 2;
-otmestvaneY[0] = 2;
+deviationX[0] = 2;
+deviationY[0] = 2;
 ballsRadius[0] = 40;
 successfulShotsCount += 1;
 
@@ -68,7 +68,7 @@ canvas.addEventListener("mouseup", function (args) {
     }
     if(restartGame && level <= 5){
         if(loose){
-            lives = lives - 1; 
+            lives = lives - 1;
         }
         myX = 200 + 14;
         myY = 550;
@@ -82,16 +82,16 @@ canvas.addEventListener("mouseup", function (args) {
         for(i = 0; i < successfulShotsCount; i += 1){
             ballsX[i] = 0;
             ballsY[i] = 0;
-            otmestvaneX[i] = 0;
-            otmestvaneY[i] = 0;
+            deviationX[i] = 0;
+            deviationY[i] = 0;
             ballsRadius[i] = 0;
         }
         successfulShotsCount=0;
         if(level == 1){
             ballsX[0] = 200;
             ballsY[0] = 200;
-            otmestvaneX[0] = 2;
-            otmestvaneY[0] = 2;
+            deviationX[0] = 2;
+            deviationY[0] = 2;
             ballsRadius[0] = 40;
             successfulShotsCount += 1;
         }
@@ -99,8 +99,8 @@ canvas.addEventListener("mouseup", function (args) {
         if(level == 2 ){
             ballsX[0] = 200;
             ballsY[0] = 200;
-            otmestvaneX[0] = 2;
-            otmestvaneY[0] = 2;
+            deviationX[0] = 2;
+            deviationY[0] = 2;
             ballsRadius[0] = 80;
             successfulShotsCount += 1;
         }
@@ -108,14 +108,14 @@ canvas.addEventListener("mouseup", function (args) {
         if(level == 3){
             ballsX[0] = 200;
             ballsY[0] = 200;
-            otmestvaneX[0] = 2;
-            otmestvaneY[0] = 2;
+            deviationX[0] = 2;
+            deviationY[0] = 2;
             ballsRadius[0] = 40;
             successfulShotsCount += 1;
             ballsX[1] = 200;
             ballsY[1] = 200;
-            otmestvaneX[1] =- 2;
-            otmestvaneY[1] = 2;
+            deviationX[1] =- 2;
+            deviationY[1] = 2;
             ballsRadius[1] = 40;
             successfulShotsCount += 1;
         }
@@ -123,14 +123,14 @@ canvas.addEventListener("mouseup", function (args) {
         if(level == 4){
             ballsX[0] = 200;
             ballsY[0] = 200;
-            otmestvaneX[0] = 2;
-            otmestvaneY[0] = 2;
+            deviationX[0] = 2;
+            deviationY[0] = 2;
             ballsRadius[0] = 80;
             successfulShotsCount += 1;
             ballsX[1] = 200;
             ballsY[1] = 200;
-            otmestvaneX[1] = -2;
-            otmestvaneY[1] = 2;
+            deviationX[1] = -2;
+            deviationY[1] = 2;
             ballsRadius[1] = 80;
             successfulShotsCount += 1;
         }
@@ -138,20 +138,20 @@ canvas.addEventListener("mouseup", function (args) {
         if(level == 5){
             ballsX[0] = 200;
             ballsY[0] = 200;
-            otmestvaneX[0] = 2;
-            otmestvaneY[0] = 2;
+            deviationX[0] = 2;
+            deviationY[0] = 2;
             ballsRadius[0] = 40;
             successfulShotsCount += 1;
             ballsX[1] = 200;
             ballsY[1] = 200;
-            otmestvaneX[1] = -2;
-            otmestvaneY[1] = 2;
+            deviationX[1] = -2;
+            deviationY[1] = 2;
             ballsRadius[1] = 40;
             successfulShotsCount += 1;
             ballsX[2] = 200;
             ballsY[2] = 200;
-            otmestvaneX[2] = 2;
-            otmestvaneY[2] = 2;
+            deviationX[2] = 2;
+            deviationY[2] = 2;
             ballsRadius[2] = 40;
             successfulShotsCount += 1;
         }
@@ -230,22 +230,22 @@ function update() {
         }
         for(i = 0; i < successfulShotsCount; i += 1){
 
-            ballsX[i] = ballsX[i] + otmestvaneX[i];
-            ballsY[i] = ballsY[i] + otmestvaneY[i];
+            ballsX[i] = ballsX[i] + deviationX[i];
+            ballsY[i] = ballsY[i] + deviationY[i];
 
 
 
 
             if(ballsX[i] + ballsRadius[i] > 800){
-                otmestvaneX[i] = -2;
+                deviationX[i] = -2;
             }
             if(ballsX[i] - ballsRadius[i] <= 0){
-                otmestvaneX[i] = 2;
+                deviationX[i] = 2;
             }
             if(ballsY[i] + ballsRadius[i] > 600){
-                otmestvaneY[i] = -5;
+                deviationY[i] = -5;
             }else{
-                otmestvaneY[i] = otmestvaneY[i] + 0.04;
+                deviationY[i] = deviationY[i] + 0.04;
             }
         }
     }
@@ -259,7 +259,7 @@ function draw() {
     context.globalAlpha = 1;
     //-------------------------First if--------------------------When we open the game
     if(startGame){
-        context.fillStyle = "rgb(0, 0, 0)"; 
+        context.fillStyle = "rgb(0, 0, 0)";
         context.font = "30px Shojumaru-Regular";
         context.fillText("Click to continue", 230, 520);
         context.fillStyle = "rgb(255, 117, 0)";
@@ -304,9 +304,9 @@ function draw() {
 
                 ballsX[successfulShotsCount] = ballsX[i];
                 ballsY[successfulShotsCount] = ballsY[i];
-                otmestvaneX[successfulShotsCount] =- otmestvaneX[i];
-                otmestvaneY[successfulShotsCount] =- 3;
-                otmestvaneY[i] =- 3;
+                deviationX[successfulShotsCount] =- deviationX[i];
+                deviationY[successfulShotsCount] =- 3;
+                deviationY[i] =- 3;
                 ballsRadius[successfulShotsCount] = ballsRadius[i]/2;
                 ballsRadius[i] = ballsRadius[i] / 2;
                 successfulShotsCount += 1;
@@ -319,9 +319,9 @@ function draw() {
             if(ballsRadius[i] >= 5){
                 context.arc(ballsX[i],ballsY[i],ballsRadius[i],0,2*Math.PI);
                 //balls to shoot at border + color
-                context.lineWidth = 3;   
-                context.strokeStyle = "#C1D72E";  
-                context.stroke();  
+                context.lineWidth = 3;
+                context.strokeStyle = "#C1D72E";
+                context.stroke();
             }
             if(pX + 30 > ballsX[i] && pX < ballsX[i] + ballsRadius[i] && pY + 60>ballsY[i] && pY < ballsY[i] + ballsRadius[i] && ballsRadius[i] >= 5){
                 restartGame = true;
@@ -352,7 +352,7 @@ function draw() {
 
 
         context.fill();
-        context.drawImage(ninja,pX,pY,60,50); 
+        context.drawImage(ninja,pX,pY,60,50);
 
 
     }

@@ -406,13 +406,14 @@ function draw() {
                 context.rotate(Math.PI / p);
                 context.lineTo(0, 0 - r);
             }
+            context.closePath();
             context.restore();
         }
         star(10,4,0.5);
 
         context.fillStyle = "#2E2E1F";
         context.fill();
-        context.lineWidth = 2;
+        context.lineWidth = 4;	
         context.strokeStyle = "#C1D72E";
         context.stroke();
 

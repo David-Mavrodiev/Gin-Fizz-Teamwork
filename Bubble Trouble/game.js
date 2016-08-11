@@ -54,13 +54,31 @@ var background = new Image();
 background.src = "./img/game-background.jpg";
 
 var intro = document.getElementById("media"); //audio tag
+var clicksCounter = 0; //this variable is used to diplay/hide popup instructions alert 
+var alertPopup = document.getElementById("alert"); //popup instructions alert 
 
 //--------------------------------------------Start of keydown event----------------------------------------------
 window.addEventListener("keydown", function (args) {
-
+    //display instructions if key "i" is pressed
+    if ( args.keyCode === 32 ) {
+        clicksCounter += 1;
+        if(clicksCounter === 1) {
+            alertPopup.className += alertPopup.className ? "hidden" : "";
+        }else if(clicksCounter > 1){
+            alertPopup.className = "hidden";
+        }     
+    }
     console.log(args.which);
 }, true);
 //--------------------------------------------End of keydown event----------------------------------------------
+
+//--------------------------------------Start of mouseup event-----------------------------------------------
+window.addEventListener("mousedown", function() {
+    alertPopup.className = "hidden";
+    stopIntro(); //calls a fuction to stop the intro music
+});   
+
+//----------------------------------------End of mouseup event----------------------------------------------
 
 //--------------------------------------------Start of mouseup event----------------------------------------------
 canvas.addEventListener("mouseup", function (args) {
@@ -281,6 +299,9 @@ function draw() {
         context.fillStyle = "rgb(0, 0, 0)";
         context.font = "30px Shojumaru-Regular";
         context.fillText("Click to continue", 230, 520);
+        context.fillStyle = "rgb(0, 0, 0)";
+        context.font = "19px Shojumaru-Regular";
+        context.fillText("Hit space for instructions", 234, 440);
         context.fillStyle = "rgb(255, 117, 0)";
         context.font = "110px Shojumaru-Regular";
         context.fillText("BUBBLE", 70, 150);
@@ -407,11 +428,6 @@ function draw() {
 //--------------------------------------------End draw function----------------------------------------------
 
 //-------------------------------------------Start of intro music-----------------------------------------------
-window.addEventListener("mousedown", function (args) {
-
-    stopIntro();
-
-}, true);
 
 function stopIntro() {
     intro.pause();
